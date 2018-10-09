@@ -88,7 +88,7 @@ public class kafkaMain {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("user_name", "zhangmin");
 		JSONObject jsonObject2 = new JSONObject();
-		jsonObject2.put("productId", "56789");
+		jsonObject2.put("productId", "11111");
 		jsonObject2.put("shopid", "1");
 		jsonObject.put("uri_args", jsonObject2);
 		String message = jsonObject.toJSONString();
@@ -97,10 +97,60 @@ public class kafkaMain {
 		JSONObject jsonObject3 = new JSONObject();
 		jsonObject3.put("user_name", "haixing");
 		JSONObject jsonObject4 = new JSONObject();
-		jsonObject4.put("productId", "12345");
+		jsonObject4.put("productId", "22222");
 		jsonObject4.put("shopid", "2");
 		jsonObject3.put("uri_args", jsonObject4);
 		String message2 = jsonObject3.toJSONString();
+		
+		JSONObject jsonObject5 = new JSONObject();
+		jsonObject5.put("user_name", "qita");
+		JSONObject jsonObject6 = new JSONObject();
+		jsonObject6.put("productId", "33333");
+		jsonObject6.put("shopid", "1");
+		jsonObject5.put("uri_args", jsonObject6);
+		String message3 = jsonObject5.toJSONString();
+		
+		
+		JSONObject jsonObject7 = new JSONObject();
+		jsonObject7.put("user_name", "zuishao");
+		JSONObject jsonObject8 = new JSONObject();
+		jsonObject8.put("productId", "44444");
+		jsonObject8.put("shopid", "2");
+		jsonObject7.put("uri_args", jsonObject8);
+		String message4 = jsonObject7.toJSONString();
+		
+		
+		JSONObject jsonObject9 = new JSONObject();
+		jsonObject9.put("user_name", "zhangmin");
+		JSONObject jsonObject10 = new JSONObject();
+		jsonObject10.put("productId", "55555");
+		jsonObject10.put("shopid", "1");
+		jsonObject9.put("uri_args", jsonObject10);
+		String message5 = jsonObject9.toJSONString();
+		
+		JSONObject jsonObject11 = new JSONObject();
+		jsonObject11.put("user_name", "zhangmin");
+		JSONObject jsonObject12 = new JSONObject();
+		jsonObject12.put("productId", "66666");
+		jsonObject12.put("shopid", "1");
+		jsonObject11.put("uri_args", jsonObject12);
+		String message6 = jsonObject11.toJSONString();
+		
+		JSONObject jsonObject13 = new JSONObject();
+		jsonObject13.put("user_name", "zhangmin");
+		JSONObject jsonObject14 = new JSONObject();
+		jsonObject14.put("productId", "77777");
+		jsonObject14.put("shopid", "1");
+		jsonObject13.put("uri_args", jsonObject14);
+		String message7 = jsonObject13.toJSONString();
+		
+		JSONObject jsonObject15 = new JSONObject();
+		jsonObject15.put("user_name", "zhangmin");
+		JSONObject jsonObject16 = new JSONObject();
+		jsonObject16.put("productId", "88888");
+		jsonObject16.put("shopid", "1");
+		jsonObject15.put("uri_args", jsonObject16);
+		String message8 = jsonObject15.toJSONString();
 
         //zk部分
 		Properties props = new Properties();
@@ -120,16 +170,44 @@ public class kafkaMain {
         
         System.out.println("我准备发送消息了");
         
-        //发送2条zhangmin的
         KeyedMessage<String, String> data = new KeyedMessage<String, String>(topic, message);
-        for(int i=0;i<2;i++) {
+        for(int i=0;i<1;i++) {
         	producer.send(data);
         }
         
         KeyedMessage<String, String> data2 = new KeyedMessage<String, String>(topic, message2);
-        //发送3条海兴的
-        for(int i=0;i<3;i++) {
+        for(int i=0;i<2;i++) {
         	producer.send(data2);
+        }
+        
+        KeyedMessage<String, String> data3 = new KeyedMessage<String, String>(topic, message3);
+        for(int i=0;i<3;i++) {
+        	producer.send(data3);
+        }
+        
+        KeyedMessage<String, String> data4 = new KeyedMessage<String, String>(topic, message4);
+        for(int i=0;i<4;i++) {
+        	producer.send(data4);
+        }
+        
+        KeyedMessage<String, String> data5 = new KeyedMessage<String, String>(topic, message5);
+        for(int i=0;i<5;i++) {
+        	producer.send(data5);
+        }
+
+        KeyedMessage<String, String> data6 = new KeyedMessage<String, String>(topic, message6);
+        for(int i=0;i<6;i++) {
+        	producer.send(data6);
+        }
+        
+        KeyedMessage<String, String> data7 = new KeyedMessage<String, String>(topic, message7);
+        for(int i=0;i<7;i++) {
+        	producer.send(data7);
+        }
+        
+        KeyedMessage<String, String> data8 = new KeyedMessage<String, String>(topic, message8);
+        for(int i=0;i<8;i++) {
+        	producer.send(data8);
         }
         
 	}

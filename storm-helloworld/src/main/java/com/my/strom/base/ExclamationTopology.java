@@ -1,4 +1,4 @@
-package com.my.strom;
+package com.my.strom.base;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;

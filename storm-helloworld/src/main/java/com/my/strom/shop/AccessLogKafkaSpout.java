@@ -11,9 +11,6 @@ import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
-import kafka.javaapi.producer.Producer;
-import kafka.producer.KeyedMessage;
-import kafka.producer.ProducerConfig;
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -35,7 +32,7 @@ public class AccessLogKafkaSpout extends BaseRichSpout {
 	private SpoutOutputCollector _collector;
 	
 	//将初始化数据放到阻塞队列中，然后再转发给下一个bolut
-	private ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String>(1000);
+	private ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String>(100);
 	
 	@Override
 	public void open(Map arg0, TopologyContext arg1, SpoutOutputCollector _collector) {
@@ -45,7 +42,7 @@ public class AccessLogKafkaSpout extends BaseRichSpout {
 	}
 	
 	private void startKafkaConsumer() {
-		//每次从主体消费1条数据
+		//每次从topic中消费1条数据
 		String topic = "mytest2";
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
         topicCountMap.put(topic, 1);
@@ -116,8 +113,8 @@ public class AccessLogKafkaSpout extends BaseRichSpout {
 		if(queue.size() > 0) {
 			try {
 				String message = queue.take();
-				System.out.println("我即将转发消息"+ message);
 				_collector.emit(new Values(message)); 
+				System.out.println("我即将转发一条消息"+ message);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -25,7 +25,7 @@ public class LogParseBolt extends BaseRichBolt {
 	public void execute(Tuple tuple) {
 		//数据的格式是json字符串并不是普通string字符串
 		String kafaMessage = tuple.getStringByField("kafaMessage");
-		System.out.println("LogParseBolt收到数据-----"+ kafaMessage);
+		System.out.println("LogParseBolt 收到数据-----"+ kafaMessage);
 		
 		//字符串变成json对象，从json对象中获取productId
 		JSONObject messageJSON = JSONObject.parseObject(kafaMessage);
@@ -33,7 +33,8 @@ public class LogParseBolt extends BaseRichBolt {
 		Long productId = uriArgsJSON.getLong("productId"); 
 		
 		if(productId != null) {
-			collector.emit(new Values(productId));  
+			collector.emit(new Values(productId)); 
+			System.out.println("LogParseBolt 转发数据-----"+ productId);
 		}
 	}
 	
